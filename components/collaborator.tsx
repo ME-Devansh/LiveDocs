@@ -2,6 +2,10 @@ import Image from "next/image";
 import React, { useState } from "react";
 import UserTypeSelector from "./user-type-selector";
 import { Button } from "./ui/button";
+import {
+  removeCollaborator,
+  updateDocumentAccess,
+} from "@/lib/actions/room.actions";
 
 const Collaborator = ({
   collaborator,
@@ -15,9 +19,22 @@ const Collaborator = ({
   );
   const [loading, setLoading] = useState<boolean>(false);
 
-  const shareDocumentHandler = (type: string) => {};
+  const shareDocumentHandler = async (type: string) => {
+    setLoading(true);
+    await updateDocumentAccess({
+      roomId,
+      email,
+      updatedBy: user,
+      userType: type as UserType,
+    });
+    setLoading(false);
+  };
 
-  const removeCollaboratorHandler = (email: string) => {};
+  const removeCollaboratorHandler = async (email: string) => {
+    setLoading(true);
+    await removeCollaborator({ email, roomId });
+    setLoading(false);
+  };
   return (
     <li className="flex items-center justify-between gap-2 py-3">
       <div className="flex gap-2">
