@@ -7,7 +7,6 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { Editor } from "./editor/Editor";
 import ActiveCollaborators from "./active-collaborators";
 import { Input } from "./ui/input";
-import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { updateDocument } from "@/lib/actions/room.actions";
 
